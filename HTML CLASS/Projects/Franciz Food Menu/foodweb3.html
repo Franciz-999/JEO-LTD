@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Northern Bites | Manchester's Finest Dining</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/706/706797.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4dbc7e6667b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+        }
+        
+        .menu-item:hover .menu-overlay {
+            opacity: 1;
+        }
+        
+        .active-nav {
+            color: #f59e0b;
+            border-bottom: 2px solid #f59e0b;
+        }
+        
+        .scroll-down {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-utensils text-2xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold">Northern Bites</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="py-2 px-1 active-nav">Home</a>
+                    <a href="#menu" class="py-2 px-1 hover:text-amber-400 transition">Menu</a>
+                    <a href="#about" class="py-2 px-1 hover:text-amber-400 transition">About</a>
+                    <a href="#gallery" class="py-2 px-1 hover:text-amber-400 transition">Gallery</a>
+                    <a href="#contact" class="py-2 px-1 hover:text-amber-400 transition">Contact</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-6 py-4 mt-2 rounded-lg">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="py-2 active-nav">Home</a>
+                    <a href="#menu" class="py-2 hover:text-amber-400 transition">Menu</a>
+                    <a href="#about" class="py-2 hover:text-amber-400 transition">About</a>
+                    <a href="#gallery" class="py-2 hover:text-amber-400 transition">Gallery</a>
+                    <a href="#contact" class="py-2 hover:text-amber-400 transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero flex items-center justify-center text-center text-white">
+        <div class="px-6">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Northern Bites</h1>
+            <p class="text-xl md:text-2xl mb-8">Manchester's finest locally-sourced dining experience</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#menu" class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-full font-semibold transition">View Menu</a>
+                <a href="#contact" class="border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-full font-semibold transition">Book a Table</a>
+            </div>
+            <div class="mt-16 scroll-down">
+                <a href="#menu" class="text-white">
+                    <i class="fas fa-chevron-down text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Preview Section -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Our Seasonal Menu</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto">Crafted with locally-sourced ingredients from Manchester's finest producers</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Starter -->
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Starter" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <h3 class="text-3xl font-bold text-white">Starters</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="border-b border-gray-200 pb-3">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Manchester Tart Arancini</span>
+                                    <span class="text-amber-600">£8.50</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">Golden risotto balls with a twist of Manchester's classic tart</p>
+                            </li>
+                            <li class="border-b border-gray-200 pb-3">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Lancashire Cheese Soufflé</span>
+                                    <span class="text-amber-600">£9.50</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">Light and airy with aged Lancashire cheese</p>
+                            </li>
+                        </ul>
+                        <a href="#" class="mt-6 inline-block text-amber-600 hover:text-amber-700 font-semibold">View All Starters →</a>
+                    </div>
+                </div>
+                
+                <!-- Main -->
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg transform scale-105 z-10">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Main" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <h3 class="text-3xl font-bold text-white">Mains</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="border-b border-gray-200 pb-3">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Northern Beef Wellington</span>
+                                    <span class="text-amber-600">£28.50</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">Cumbrian beef wrapped in mushroom duxelles and puff pastry</p>
+                            </li>
+                            <li class="border-b border-gray-200 pb-3">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Pan-Seared Sea Bass</span>
+                                    <span class="text-amber-600">£24.00</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">With heritage carrots and brown butter sauce</p>
+                            </li>
+                        </ul>
+                        <a href="#" class="mt-6 inline-block text-amber-600 hover:text-amber-700 font-semibold">View All Mains →</a>
+                    </div>
+                </div>
+                
+                <!-- Dessert -->
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Dessert" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <h3 class="text-3xl font-bold text-white">Desserts</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="border-b border-gray-200 pb-3">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Manchester Tart</span>
+                                    <span class="text-amber-600">£7.50</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">Our modern take on the Manchester classic</p>
+                            </li>
+                            <li class="border-b border-gray-200 pb-3">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Sticky Toffee Pudding</span>
+                                    <span class="text-amber-600">£8.00</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">With vanilla custard and caramel sauce</p>
+                            </li>
+                        </ul>
+                        <a href="#" class="mt-6 inline-block text-amber-600 hover:text-amber-700 font-semibold">View All Desserts →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+                    <h2 class="text-4xl font-bold mb-6">Our Story</h2>
+                    <p class="text-gray-300 mb-6">Founded in 2010 in the heart of Manchester, Northern Bites was born from a passion for celebrating the incredible produce of Northern England. Our chef, a Manchester native, brings over 20 years of culinary expertise to every dish.</p>
+                    <p class="text-gray-300 mb-8">We're proud to partner with local farmers, fishermen, and artisan producers to bring you a true taste of the North West. Our menu changes with the seasons to showcase ingredients at their peak.</p>
+                    <div class="flex space-x-4">
+                        <div class="bg-amber-500 p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold">13</div>
+                            <div class="text-sm">Years Serving</div>
+                        </div>
+                        <div class="bg-amber-500 p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold">50+</div>
+                            <div class="text-sm">Local Suppliers</div>
+                        </div>
+                        <div class="bg-amber-500 p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold">100%</div>
+                            <div class="text-sm">Northern Passion</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="h-64 overflow-hidden rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Chef" class="w-full h-full object-cover">
+                        </div>
+                        <div class="h-64 overflow-hidden rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Ingredients" class="w-full h-full object-cover">
+                        </div>
+                        <div class="h-64 overflow-hidden rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Restaurant" class="w-full h-full object-cover">
+                        </div>
+                        <div class="h-64 overflow-hidden rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1981&q=80" alt="Dish" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Gallery</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto">A glimpse into our Manchester restaurant and culinary creations</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="relative group overflow-hidden rounded-lg h-64">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Restaurant Interior" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white text-lg font-semibold">Our Dining Room</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg h-64">
+                    <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1922&q=80" alt="Dish" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white text-lg font-semibold">Signature Dish</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg h-64">
+                    <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1998&q=80" alt="Bar" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white text-lg font-semibold">Cocktail Bar</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg h-64">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1971&q=80" alt="Dessert" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white text-lg font-semibold">Dessert Selection</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-full font-semibold transition">View Full Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Contact Us</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto">Visit us in Manchester or book your table today</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6">Book a Table</h3>
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Name</label>
+                                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Email</label>
+                                    <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Date</label>
+                                    <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Time</label>
+                                    <input type="time" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-gray-700 mb-2">Special Requests</label>
+                                    <textarea class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="mt-6 bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-full font-semibold transition w-full">Book Now</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-lg h-full">
+                        <h3 class="text-2xl font-bold mb-6">Find Us</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Address</h4>
+                                    <p class="text-gray-600">42 Northern Quarter, Manchester M1 1AB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Phone</h4>
+                                    <p class="text-gray-600">0161 123 4567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-gray-600">hello@northernbites.co.uk</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-clock text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Opening Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 12pm - 10pm</p>
+                                    <p class="text-gray-600">Saturday - Sunday: 11am - 11pm</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2374.3736937166!2d-2.237022823443119!3d53.48336707233747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb1c0a2181c9d%3A0x3b839354606e3e8b!2sNorthern%20Quarter%2C%20Manchester!5e0!3m2!1sen!2suk!4v1689871234567!5m2!1sen!2suk" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-utensils text-2xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold">Northern Bites</span>
+                    </div>
+                    <p class="text-gray-400">Celebrating the best of Northern cuisine in the heart of Manchester since 2010.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-amber-400 transition">Home</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-amber-400 transition">Menu</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-amber-400 transition">About Us</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-amber-400 transition">Gallery</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-amber-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Opening Hours</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex justify-between">
+                            <span>Monday - Friday</span>
+                            <span>12pm - 10pm</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Saturday</span>
+                            <span>11am - 11pm</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sunday</span>
+                            <span>11am - 11pm</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Follow Us</h4>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-500 transition">
+                            <i class="fab fa-tripadvisor"></i>
+                        </a>
+                    </div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 bg-gray-800 text-white rounded-l focus:outline-none focus:ring-1 focus:ring-amber-500 w-full">
+                        <button class="bg-amber-500 hover:bg-amber-600 text-white px-4 rounded-r">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Northern Bites. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Highlight active nav link based on scroll position
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active-nav');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

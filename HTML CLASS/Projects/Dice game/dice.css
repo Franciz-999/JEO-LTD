@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 100vh;
+    display: flex;
+    background-color: rgba(100, 148, 237, 0.671);
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
+}
+fieldset {
+    width: 70%;
+    padding: 2rem;
+    border: .5rem dotted red;
+    border-radius: 2.5em;
+}
+fieldset legend {
+    font-size: xx-large;
+    font-style: italic;
+    text-align: center;
+}
+button {
+    width: 3em;
+    height: 5em;
+}

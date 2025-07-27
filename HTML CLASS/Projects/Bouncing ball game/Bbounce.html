@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bouncing Ball Game</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      background: #111;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+      background: linear-gradient(#222, #000);
+    }
+    #scoreboard {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #0f0;
+      font-size: calc(1.5vh + 1.5vw);
+      text-align: center;
+      z-index: 1;
+      display: none;
+    }
+    #menu {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #000, #222);
+      color: #0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      z-index: 2;
+    }
+    #menu h1 {
+      font-size: calc(4vh + 4vw);
+      margin-bottom: 20px;
+    }
+    #menu p {
+      font-size: calc(1.5vh + 1.5vw);
+      margin-bottom: 30px;
+    }
+    #startBtn {
+      padding: 15px 30px;
+      font-size: calc(1.2vh + 1.2vw);
+      background: #0f0;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    #startBtn:hover {
+      background: #0c0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="menu">
+  <h1>Bouncing Ball</h1>
+  <p>
+    Move the paddle to bounce the ball. <br/>
+    Catch power-ups to grow your paddle. <br/>
+    Don't let the ball drop! <br/><br/>
+    Touch or drag to play on mobile.
+  </p>
+  <button id="startBtn">Start Game</button>
+</div>
+
+<div id="scoreboard">Score: 0 | Level: 1 | Lives: 3</div>
+<canvas id="gameCanvas"></canvas>
+
+<audio id="bounceSound" src="https://actions.google.com/sounds/v1/impacts/bounce.ogg"></audio>
+<audio id="scoreSound" src="https://actions.google.com/sounds/v1/cartoon/pop.ogg"></audio>
+<audio id="gameOverSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
+
+<script>
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  const bounceSound = document.getElementById("bounceSound");
+  const scoreSound = document.getElementById("scoreSound");
+  const gameOverSound = document.getElementById("gameOverSound");
+
+  let score = 0, level = 1, lives = 3;
+  let speedMultiplier = 1.1;
+  let paddleGrowTime = 0;
+  let paddleFlash = false;
+  let gameRunning = false;
+
+  const paddle = {
+    width: width * 0.2,
+    height: 20,
+    x: width / 2 - (width * 0.2) / 2,
+    y: height - 30,
+    color: "#0ff",
+    baseWidth: width * 0.2,
+    growWidth: width * 0.35,
+    moveTo(x) {
+      this.x = Math.min(Math.max(x - this.width / 2, 0), width - this.width);
+    }
+  };
+
+  const ball = {
+    x: width / 2,
+    y: height / 2,
+    radius: 15,
+    dx: 4,
+    dy: -4,
+    color: "#f00",
+    glow: 15
+  };
+
+  const powerUps = [];
+
+  function drawPaddle() {
+    ctx.fillStyle = paddleFlash ? "#fff" : paddle.color;
+    ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    paddleFlash = false;
+  }
+
+  function drawBall() {
+    ctx.save();
+    ctx.shadowBlur = ball.glow;
+    ctx.shadowColor = ball.color;
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = ball.color;
+    ctx.fill();
+    ctx.closePath();
+    ctx.restore();
+  }
+
+  function spawnPowerUp() {
+    if (Math.random() < 0.05) {
+      powerUps.push({
+        x: Math.random() * (width - 30),
+        y: 0,
+        size: 20,
+        color: "#ff0",
+        active: true
+      });
+    }
+  }
+
+  function drawPowerUps() {
+    for (let p of powerUps) {
+      if (p.active) {
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+      }
+    }
+  }
+
+  function checkPowerUpCollision() {
+    for (let p of powerUps) {
+      if (
+        p.active &&
+        p.y + p.size >= paddle.y &&
+        p.x + p.size > paddle.x &&
+        p.x < paddle.x + paddle.width
+      ) {
+        p.active = false;
+        paddle.width = paddle.growWidth;
+        paddleGrowTime = Date.now();
+        paddleFlash = true;
+        scoreSound.play();
+      }
+    }
+  }
+
+  function resetBall() {
+    ball.x = width / 2;
+    ball.y = height / 2;
+    ball.dx = 4 * (Math.random() > 0.5 ? 1 : -1);
+    ball.dy = -4;
+  }
+
+  function updateScore() {
+    document.getElementById("scoreboard").textContent =
+      `Score: ${score} | Level: ${level} | Lives: ${lives}`;
+  }
+
+  function update() {
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+
+    // Wall collision
+    if (ball.x + ball.radius > width || ball.x - ball.radius < 0) {
+      ball.dx = -ball.dx;
+      bounceSound.play();
+    }
+    if (ball.y - ball.radius < 0) {
+      ball.dy = -ball.dy;
+      bounceSound.play();
+    }
+
+    // Paddle hit
+    if (
+      ball.y + ball.radius > paddle.y &&
+      ball.x > paddle.x &&
+      ball.x < paddle.x + paddle.width
+    ) {
+      ball.dy = -Math.abs(ball.dy);
+      score++;
+      bounceSound.play();
+      if (score % 5 === 0) {
+        level++;
+        ball.dx *= speedMultiplier;
+        ball.dy *= speedMultiplier;
+      }
+      updateScore();
+      spawnPowerUp();
+    }
+
+    // Missed ball
+    if (ball.y - ball.radius > height) {
+      lives--;
+      if (lives <= 0) {
+        gameOverSound.play();
+        setTimeout(() => {
+          alert(`Game Over!\nScore: ${score}\nLevel: ${level}`);
+          document.location.reload();
+        }, 100);
+      } else {
+        resetBall();
+        updateScore();
+      }
+    }
+
+    // Power-ups
+    for (let p of powerUps) {
+      if (p.active) p.y += 3;
+    }
+    checkPowerUpCollision();
+
+    // Paddle size reset
+    if (paddleGrowTime && Date.now() - paddleGrowTime > 7000) {
+      paddle.width = paddle.baseWidth;
+      paddleGrowTime = 0;
+    }
+  }
+
+  function draw() {
+    if (!gameRunning) return;
+    ctx.clearRect(0, 0, width, height);
+    drawPaddle();
+    drawBall();
+    drawPowerUps();
+    update();
+    requestAnimationFrame(draw);
+  }
+
+  canvas.addEventListener("mousemove", e => paddle.moveTo(e.clientX));
+  canvas.addEventListener("touchmove", e => paddle.moveTo(e.touches[0].clientX));
+
+  window.addEventListener("resize", () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    paddle.baseWidth = width * 0.2;
+    paddle.growWidth = width * 0.35;
+    paddle.y = height - 30;
+    if (!paddleGrowTime) paddle.width = paddle.baseWidth;
+    paddle.moveTo(paddle.x + paddle.width / 2);
+  });
+
+  document.getElementById("startBtn").addEventListener("click", () => {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("scoreboard").style.display = "block";
+    gameRunning = true;
+    draw();
+  });
+</script>
+</body>
+</html>

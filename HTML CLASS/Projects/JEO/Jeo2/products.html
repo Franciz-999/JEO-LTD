@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEO Beverages - Our Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Product card hover effect */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Mobile menu animation */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-menu {
+            animation: slideDown 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-2xl font-bold">JEO</a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/HTML CLASS/Projects/JEO/Jeo2/jeo.html" class="hover:text-amber-400 transition">Home</a>
+                    <a href="#products" class="hover:text-amber-400 transition">Products</a>
+                    <a href="#about" class="hover:text-amber-400 transition">About</a>
+                    <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+                    <a href="#" class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded transition">Order Now</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu (hidden by default) -->
+            <div id="mobile-menu" class="hidden mobile-menu md:hidden mt-4 pb-4">
+                <a href="/HTML CLASS/Projects/JEO/Jeo2/jeo.html" class="block py-2 hover:text-amber-400 transition">Home</a>
+                <a href="#products" class="block py-2 hover:text-amber-400 transition">Products</a>
+                <a href="#about" class="block py-2 hover:text-amber-400 transition">About</a>
+                <a href="#contact" class="block py-2 hover:text-amber-400 transition">Contact</a>
+                <a href="#" class="block mt-2 bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded transition w-full text-center">Order Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-gray-700 to-gray-900 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Premium Beverage Selection</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Discover our exquisite collection of beverages, carefully curated for every occasion.</p>
+            <a href="#products" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full font-semibold transition inline-block">Explore Products</a>
+        </div>
+    </header>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Beverage Collection</h2>
+                <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
+            </div>
+            
+            <!-- Product Categories -->
+            <div class="flex justify-center mb-8 overflow-x-auto pb-4">
+                <div class="flex space-x-2">
+                    <button class="category-btn px-4 py-2 rounded-full bg-amber-600 text-white" data-category="all">All</button>
+                    <button class="category-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition" data-category="beer">Beers</button>
+                    <button class="category-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition" data-category="wine">Wines</button>
+                    <button class="category-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition" data-category="spirits">Spirits</button>
+                    <button class="category-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition" data-category="non-alcoholic">Non-Alcoholic</button>
+                </div>
+            </div>
+            
+            <!-- Product Slider -->
+            <div class="relative">
+                <div id="product-slider" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-all duration-500">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="flex justify-center mt-8 space-x-4">
+                    <button id="prev-btn" class="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <i class="fas fa-chevron-left mr-2"></i> Previous
+                    </button>
+                    <span id="page-indicator" class="px-4 py-2">1/3</span>
+                    <button id="next-btn" class="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition">
+                        Next <i class="fas fa-chevron-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Featured Selections</h2>
+                <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="bg-gray-200 h-48 mb-4 rounded flex items-center justify-center">
+                        <i class="fas fa-crown text-4xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Premium Collection</h3>
+                    <p class="text-gray-600 mb-4">Our most exclusive beverages for the discerning palate.</p>
+                    <a href="#" class="text-amber-600 hover:text-amber-700 font-medium">Explore</a>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="bg-gray-200 h-48 mb-4 rounded flex items-center justify-center">
+                        <i class="fas fa-glass-martini-alt text-4xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Limited Editions</h3>
+                    <p class="text-gray-600 mb-4">Rare finds and special releases available in limited quantities.</p>
+                    <a href="#" class="text-amber-600 hover:text-amber-700 font-medium">Discover</a>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="bg-gray-200 h-48 mb-4 rounded flex items-center justify-center">
+                        <i class="fas fa-leaf text-4xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Organic Selection</h3>
+                    <p class="text-gray-600 mb-4">Naturally crafted beverages for the health-conscious consumer.</p>
+                    <a href="#" class="text-amber-600 hover:text-amber-700 font-medium">Browse</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1598905598891-10b8b0f7e0d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="About JEO Beverages" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">About JEO Beverages</h2>
+                    <p class="text-gray-600 mb-4">Founded with a passion for quality and variety, JEO Beverages has been a trusted name in beverage distribution for over a decade. We specialize in bringing the finest selection of alcoholic and non-alcoholic beverages to retailers and consumers alike.</p>
+                    <p class="text-gray-600 mb-6">Our team of experts carefully curates each product in our portfolio, ensuring that we offer only the best in taste, quality, and craftsmanship. From local craft beers to internationally renowned spirits, we pride ourselves on our diverse and premium selection.</p>
+                    <div class="flex space-x-4">
+                        <div class="bg-amber-100 p-4 rounded-lg">
+                            <i class="fas fa-award text-amber-600 text-2xl mb-2"></i>
+                            <h3 class="font-semibold">Quality Assurance</h3>
+                        </div>
+                        <div class="bg-amber-100 p-4 rounded-lg">
+                            <i class="fas fa-globe text-amber-600 text-2xl mb-2"></i>
+                            <h3 class="font-semibold">Global Selection</h3>
+                        </div>
+                        <div class="bg-amber-100 p-4 rounded-lg">
+                            <i class="fas fa-truck text-amber-600 text-2xl mb-2"></i>
+                            <h3 class="font-semibold">Reliable Delivery</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-gray-800 text-white p-8">
+                        <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+                        <div class="mb-6">
+                            <div class="flex items-start mb-4">
+                                <i class="fas fa-map-marker-alt mt-1 mr-4 text-amber-400"></i>
+                                <div>
+                                    <h4 class="font-semibold">Address</h4>
+                                    <p>123 Beverage Lane, Suite 100<br>New York, NY 10001</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start mb-4">
+                                <i class="fas fa-phone-alt mt-1 mr-4 text-amber-400"></i>
+                                <div>
+                                    <h4 class="font-semibold">Phone</h4>
+                                    <p>(555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope mt-1 mr-4 text-amber-400"></i>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p>info@jeobeverages.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-gray-700">
+                            <h4 class="font-semibold mb-2">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-white hover:text-amber-400 transition"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-white hover:text-amber-400 transition"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-white hover:text-amber-400 transition"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-white hover:text-amber-400 transition"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                            </div>
+                            <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded font-medium transition">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">JEO Beverages</h3>
+                    <p class="text-gray-400">Premium beverage distribution for all occasions. Quality you can taste, service you can trust.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white transition">Products</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Beers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Wines</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Spirits</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Non-Alcoholic</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l text-gray-800 focus:outline-none w-full">
+                        <button type="submit" class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-r transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 JEO Beverages. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-amber-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-amber-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+const products = [
+    { id: 1, name: "Premium Lager", category: "beer", price: "$12.99", image: "https://images.pexels.com/photos/1267358/pexels-photo-1267358.jpeg?auto=compress&w=400" },
+    { id: 2, name: "Chardonnay", category: "wine", price: "$24.99", image: "https://images.pexels.com/photos/1407855/pexels-photo-1407855.jpeg?auto=compress&w=400" },
+    { id: 3, name: "Single Malt Whiskey", category: "spirits", price: "$49.99", image: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&w=400" },
+    { id: 4, name: "Craft IPA", category: "beer", price: "$14.99", image: "https://images.pexels.com/photos/1552635/pexels-photo-1552635.jpeg?auto=compress&w=400" },
+    { id: 5, name: "Sparkling Water", category: "non-alcoholic", price: "$3.99", image: "https://images.pexels.com/photos/416528/pexels-photo-416528.jpeg?auto=compress&w=400" },
+    { id: 6, name: "Merlot", category: "wine", price: "$19.99", image: "https://images.pexels.com/photos/1407852/pexels-photo-1407852.jpeg?auto=compress&w=400" },
+    { id: 7, name: "Vodka", category: "spirits", price: "$29.99", image: "https://images.pexels.com/photos/3323686/pexels-photo-3323686.jpeg?auto=compress&w=400" },
+    { id: 8, name: "Pilsner", category: "beer", price: "$11.99", image: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&w=400" },
+    { id: 9, name: "Gin", category: "spirits", price: "$34.99", image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&w=400" },
+    { id: 10, name: "Rosé", category: "wine", price: "$22.99", image: "https://images.pexels.com/photos/1407850/pexels-photo-1407850.jpeg?auto=compress&w=400" },
+    { id: 11, name: "Stout", category: "beer", price: "$15.99", image: "https://images.pexels.com/photos/1267359/pexels-photo-1267359.jpeg?auto=compress&w=400" },
+    { id: 12, name: "Tequila", category: "spirits", price: "$39.99", image: "https://images.pexels.com/photos/1283218/pexels-photo-1283218.jpeg?auto=compress&w=400" },
+    { id: 13, name: "Pinot Noir", category: "wine", price: "$27.99", image: "https://images.pexels.com/photos/1407852/pexels-photo-1407852.jpeg?auto=compress&w=400" },
+    { id: 14, name: "Soda", category: "non-alcoholic", price: "$2.99", image: "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=400" },
+    { id: 15, name: "Rum", category: "spirits", price: "$32.99", image: "https://images.pexels.com/photos/1283217/pexels-photo-1283217.jpeg?auto=compress&w=400" },
+    { id: 16, name: "Craft Cider", category: "beer", price: "$13.99", image: "https://images.pexels.com/photos/616834/pexels-photo-616834.jpeg?auto=compress&w=400" },
+    { id: 17, name: "Cabernet Sauvignon", category: "wine", price: "$29.99", image: "https://images.pexels.com/photos/1407853/pexels-photo-1407853.jpeg?auto=compress&w=400" },
+    { id: 18, name: "Bourbon", category: "spirits", price: "$44.99", image: "https://images.pexels.com/photos/1283216/pexels-photo-1283216.jpeg?auto=compress&w=400" },
+    { id: 19, name: "Energy Drink", category: "non-alcoholic", price: "$3.49", image: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&w=400" },
+    { id: 20, name: "Wheat Beer", category: "beer", price: "$12.49", image: "https://images.pexels.com/photos/1267357/pexels-photo-1267357.jpeg?auto=compress&w=400" },
+    { id: 21, name: "Prosecco", category: "wine", price: "$21.99", image: "https://images.pexels.com/photos/1407854/pexels-photo-1407854.jpeg?auto=compress&w=400" },
+    { id: 22, name: "Brandy", category: "spirits", price: "$39.99", image: "https://images.pexels.com/photos/1283215/pexels-photo-1283215.jpeg?auto=compress&w=400" },
+    { id: 23, name: "Juice", category: "non-alcoholic", price: "$4.99", image: "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&w=400" },
+    { id: 24, name: "Porter", category: "beer", price: "$14.49", image: "https://images.pexels.com/photos/1267356/pexels-photo-1267356.jpeg?auto=compress&w=400" },
+    { id: 25, name: "Champagne", category: "wine", price: "$59.99", image: "https://images.pexels.com/photos/1407856/pexels-photo-1407856.jpeg?auto=compress&w=400" }
+];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Back to Top Button
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Product Slider Functionality
+            const productSlider = document.getElementById('product-slider');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const pageIndicator = document.getElementById('page-indicator');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            
+            let currentPage = 1;
+            const productsPerPage = 8;
+            let filteredProducts = [...products];
+            
+            // Display products
+            function displayProducts() {
+                productSlider.innerHTML = '';
+                
+                const startIndex = (currentPage - 1) * productsPerPage;
+                const endIndex = startIndex + productsPerPage;
+                const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+                
+                paginatedProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card bg-white rounded-lg shadow-md overflow-hidden';
+                    productCard.innerHTML = `
+                        <div class="bg-gray-200 h-48 flex items-center justify-center">
+                            <img src="${product.image}" alt="${product.name}" class="object-cover h-48 w-full">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1">${product.name}</h3>
+                            <p class="text-gray-600 mb-2">${product.price}</p>
+                            <span class="inline-block px-2 py-1 text-xs rounded-full 
+                                ${product.category === 'beer' ? 'bg-blue-100 text-blue-800' : 
+                                  product.category === 'wine' ? 'bg-purple-100 text-purple-800' : 
+                                  product.category === 'spirits' ? 'bg-amber-100 text-amber-800' : 
+                                  'bg-green-100 text-green-800'}">
+                                ${product.category}
+                            </span>
+                            <button class="mt-3 w-full bg-gray-800 hover:bg-gray-700 text-white py-2 rounded transition">
+                                Add to Cart
+                            </button>
+                        </div>
+                    `;
+                    productSlider.appendChild(productCard);
+                });
+                
+                // Update pagination controls
+                const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+                pageIndicator.textContent = `${currentPage}/${totalPages}`;
+                
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = currentPage === totalPages;
+            }
+            
+            // Pagination controls
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayProducts();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayProducts();
+                }
+            });
+            
+            // Category filtering
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button
+                    categoryBtns.forEach(b => b.className = 'category-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition');
+                    btn.className = 'category-btn px-4 py-2 rounded-full bg-amber-600 text-white';
+                    
+                    // Filter products
+                    const category = btn.dataset.category;
+                    if (category === 'all') {
+                        filteredProducts = [...products];
+                    } else {
+                        filteredProducts = products.filter(p => p.category === category);
+                    }
+                    
+                    // Reset to first page and display
+                    currentPage = 1;
+                    displayProducts();
+                });
+            });
+            
+            // Initial display
+            displayProducts();
+        });
+    </script>
+</body>
+</html>

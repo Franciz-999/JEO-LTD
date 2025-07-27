@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JEO Beverage Distribution</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥤</text></svg>">
+  <!-- Required CDN links for Tailwind and Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Required CSS for navbar and mode toggle -->
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Mobile menu animation */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .mobile-menu {
+      animation: slideDown 0.3s ease forwards;
+    }
+    /* Mode toggle button styling */
+    .mode-toggle {
+      transition: all 0.3s ease;
+    }
+    .mode-toggle:hover {
+      transform: scale(1.1);
+    }
+    body {
+      background-color: #f9fafb;
+      color: #23272f;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.darkmode {
+      background-color: #181824;
+      color: #e0e6ed;
+    }
+    /* Navbar colors */
+    nav {
+      background-color: #1f2937;
+    }
+    body.darkmode nav {
+      background-color: #23272f;
+    }
+    /* Section backgrounds */
+    .gradient-bg {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    }
+    body.darkmode .gradient-bg {
+      background: linear-gradient(135deg, #181824 0%, #23272f 100%);
+    }
+    .beverage-card {
+      background: #fff;
+      color: #23272f;
+      transition: all 0.3s;
+    }
+    body.darkmode .beverage-card {
+      background: #23272f;
+      color: #e0e6ed;
+    }
+    /* Footer colors */
+    footer {
+      background-color: #23272f;
+      color: #e0e6ed;
+    }
+    body:not(.darkmode) footer {
+      background-color: #1f2937;
+      color: #fff;
+    }
+    /* Other elements can be styled similarly */
+  </style>
+</head>
+<body class="transition-colors duration-300">
+  <!-- Navbar Start -->
+  <nav class="bg-gray-800 text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <a href="#" class="text-2xl font-bold">JEO</a>
+        </div>
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#" class="hover:text-amber-400 transition">Home</a>
+          <a href="/HTML CLASS/Projects/JEO/Jeo2/products.html" class="hover:text-amber-400 transition">Products</a>
+          <a href="#about" class="hover:text-amber-400 transition">About</a>
+          <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+        </div>
+        <!-- Right side: Mode toggle and mobile menu button -->
+        <div class="flex items-center space-x-4">
+          <button id="modeToggle" class="mode-toggle bg-white dark:bg-gray-800 text-gray-800 dark:text-yellow-300 p-2 rounded-full shadow">
+            <i class="fas fa-moon block dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:block"></i>
+          </button>
+          <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-white focus:outline-none">
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Menu (hidden by default) -->
+      <div id="mobile-menu" class="hidden mobile-menu md:hidden mt-4 pb-4">
+        <a href="#" class="block py-2 hover:text-amber-400 transition">Home</a>
+        <a href="/HTML CLASS/Projects/JEO/Jeo2/products.html" class="block py-2 hover:text-amber-400 transition">Products</a>
+        <a href="#about" class="block py-2 hover:text-amber-400 transition">About</a>
+        <a href="#contact" class="block py-2 hover:text-amber-400 transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Hero Section -->
+  <section id="home" class="gradient-bg text-white py-20">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Premium Beverage Distribution</h2>
+        <p class="text-xl mb-8">Delivering quality drinks to your doorstep with speed and reliability.</p>
+        <div class="flex space-x-4">
+          <button class="bg-white text-indigo-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition">Order Now</button>
+          <button class="border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-6 py-3 rounded-lg font-semibold transition">Learn More</button>
+        </div>
+      </div>
+      <div class="md:w-1/2 flex justify-center">
+        <img style="border-radius: 40px;" src="/ASSETS/Image/begin.jpg" alt="Beverage selection" class="rounded-lg shadow-2xl max-w-md w-full">
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-16 bg-gray-100 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Our Premium Selection</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Product 1 -->
+        <div class="beverage-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg">
+          <img src="/ASSETS/Image/Heineken.jpeg" alt="Sparkling Water" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Beer</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">The distinctive green bottle was a bold branding choice early on, as most beer bottles were brown at the time, and it signaled a premium product.</p>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-lg">$2.99</span>
+              <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="beverage-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg">
+          <img src="/ASSETS/Image/energydrinks.jpeg" alt="Energy Drink" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Energy Boost</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Energy drinks have become a lifestyle product, aligning with activities requiring high energy and focus, from late-night study sessions to athletic training.</p>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-lg">$3.49</span>
+              <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="beverage-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg">
+          <img src="/ASSETS/Image/softdrinks.jpeg" alt="Organic Juice" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Soft Drinks</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Diet soft drinks can lead to faster inebriation compared to their regular counterparts because the lack of sugar causes alcohol to be absorbed more quickly by the body.</p>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-lg">$4.99</span>
+              <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="beverage-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg">
+          <img src="https://images.unsplash.com/photo-1610873167013-2dd675d30ef4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Craft Soda" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Craft Soda</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Small-batch craft soda with natural ingredients.</p>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-lg">$3.99</span>
+              <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <button class="border-2 border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-700 px-6 py-3 rounded-lg font-semibold transition">
+          View All Products
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+          <h2 class="text-3xl font-bold mb-6">About JEO Beverages</h2>
+          <p class="text-lg mb-4">Founded in October 2020, JEO Beverage Distribution has grown to become a leader in premium drink distribution across the region.</p>
+          <p class="text-lg mb-6">We partner with the finest beverage producers to bring you exceptional quality drinks with a focus on health, taste, and sustainability.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-indigo-100 dark:bg-indigo-900 p-4 rounded-lg">
+              <h3 class="font-semibold mb-2">50+ Brands</h3>
+              <p class="text-sm">From local favorites to international names</p>
+            </div>
+            <div class="bg-indigo-100 dark:bg-indigo-900 p-4 rounded-lg">
+              <h3 class="font-semibold mb-2">24/7 Support</h3>
+              <p class="text-sm">Our team is always ready to assist you</p>
+            </div>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <img src="/ASSETS/Image/cover.jpg" alt="Warehouse" class="rounded-lg shadow-xl w-full">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-gray-100 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-600 dark:text-indigo-300 font-bold mr-4">JD</div>
+            <div>
+              <h4 class="font-semibold">John Doe</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Cafe Owner</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300">"JEO's reliable delivery and premium selection have transformed our beverage offerings. Our customers love the quality!"</p>
+          <div class="flex mt-4 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-600 dark:text-indigo-300 font-bold mr-4">AS</div>
+            <div>
+              <h4 class="font-semibold">Alice Smith</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Restaurant Manager</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300">"The variety and quality of beverages from JEO are unmatched. Their customer service is exceptional too."</p>
+          <div class="flex mt-4 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-600 dark:text-indigo-300 font-bold mr-4">RJ</div>
+            <div>
+              <h4 class="font-semibold">Robert Johnson</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Hotel Chain Purchaser</p>
+            </div>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300">"We've worked with many distributors, but JEO stands out for their professionalism and product knowledge."</p>
+          <div class="flex mt-4 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto bg-white dark:bg-gray-700 rounded-lg shadow-xl overflow-hidden">
+        <div class="md:flex">
+          <div class="md:w-1/2 gradient-bg text-white p-10">
+            <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+            <div class="mb-6">
+              <h3 class="font-semibold text-xl mb-2">Headquarters</h3>
+              <p>25, jubril Yusuf drive kola bus-stop</p>
+              <p>Alagbado Lagos, PC 100314</p>
+            </div>
+            <div class="mb-6">
+              <h3 class="font-semibold text-xl mb-2">Contact Info</h3>
+              <p class="mb-1"><i class="fas fa-phone-alt mr-2"></i> +234 806 793 9978</p>
+              <p><i class="fas fa-envelope mr-2"></i> info@jeobeverages.com</p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-xl mb-2">Business Hours</h3>
+              <p>Monday - Friday: 8am - 7pm</p>
+              <p>Saturday: 9am - 5pm</p>
+              <p>Sunday: Closed</p>
+            </div>
+          </div>
+          <div class="md:w-1/2 p-10">
+            <h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
+            <form>
+              <div class="mb-4">
+                <label for="name" class="block text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-600">
+              </div>
+              <div class="mb-4">
+                <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-600">
+              </div>
+              <div class="mb-4">
+                <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-600"></textarea>
+              </div>
+              <button type="submit" class="gradient-bg text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition w-full">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <span class="text-2xl">🥤</span>
+            <h3 class="text-2xl font-bold">JEO</h3>
+          </div>
+          <p class="text-gray-400">Premium beverage distribution for businesses and individuals.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+            <li><a href="/HTML CLASS/Projects/JEO/Jeo2/products.html" class="text-gray-400 hover:text-white transition">Products</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Products</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Soft Drinks</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Energy Drinks</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Juices</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Beer</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+          <p class="text-gray-400 mb-4">Subscribe to get updates on new products and special offers.</p>
+          <form class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-r-lg transition">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 JEO Beverage Distribution. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Required JS for navbar and mode toggle -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Menu Toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Auto-close mobile menu when any link is clicked
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // Professional Dark/Light mode toggle
+      const modeToggle = document.getElementById('modeToggle');
+      const body = document.body;
+      // Load theme from localStorage
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      if (currentTheme === 'dark') {
+        body.classList.add('darkmode');
+      } else {
+        body.classList.remove('darkmode');
+      }
+      modeToggle.addEventListener('click', function() {
+        body.classList.toggle('darkmode');
+        const theme = body.classList.contains('darkmode') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+      });
+    });
+  </script>
+</body>
+</html>

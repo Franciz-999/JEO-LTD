@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta title="author" content="Franciz Morningstar" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GHIT Reg Form</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: darkcyan;
+        font-style: italic;
+        color: papayawhip;
+        font-size: 1.2rem;
+      }
+
+      h2 {
+        color: peachpuff;
+      }
+
+      fieldset {
+        padding: 1em;
+        width: 60%;
+        text-align: justify;
+      }
+      label,
+      input {
+        margin: 0.3em;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Fill in the Reg. form below ;</h2>
+    <br />
+
+    <fieldset>
+      <label for="firstName"> First Name;;</label>
+      <input type="text" /> <br />
+      <label for="middleName">Middle Name;</label>
+      <input type="text" /> <br />
+      <label for="lastName">Last Name;</label>
+      <input type="text" /> <br />
+      <label for="email">Email; </label>
+      <input type="email" placeholder="abc123@email.com" /> <br />
+      <label for="password">Password;</label>
+      <input type="password" /> <br />
+      <label for="gender">Gender ;</label> <br />
+      <input name="gender" id="male" type="radio" />
+      <label for="male">Male</label> <br />
+      <input name="gender" id="female" type="radio" />
+      <label for="female">Female</label> <br />
+      <input name="gender" id="other" type="radio" />
+      <label for="other">Other</label> <br />
+      <input name="gender" id="rather" type="radio" />
+      <label for="rather">Rather not say</label>
+
+      <h4>Which course/s do you intend to apply for;</h4>
+      <input type="checkbox" name="Appdev" id="Appdev">
+      <label for="Appdev">App Development</label> <br>
+      <input type="checkbox" name="Autocad" id="Autocad">
+      <label for="Autocad">Autocad</label> <br>
+      <input type="checkbox" name="CCTV" id="CCTV">
+      <label for="CCTV">CCTV</label> <br>
+      <input type="checkbox" name="Desktop" id="Desktop">
+      <label for="Desktop">Desktop Publishing</label> <br>
+      <input type="checkbox" name="Robotics" id="E\Robotics">
+      <label for="Robotics">Robotics</label> <br>
+      <input type="checkbox" name="webdev" id="webdev">
+      <label for="webdev">Web Development</label>
+    </fieldset>
+  </body>
+</html>

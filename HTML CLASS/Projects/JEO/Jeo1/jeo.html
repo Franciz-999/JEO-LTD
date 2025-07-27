@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEO | Premium Beverage Distribution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥤</text></svg>">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'robin-egg': '#00CCCC',
+                        'black-olive': '#3D3C3C',
+                        'futuristic-blue': '#00FFFF',
+                        'futuristic-purple': '#CC00FF',
+                        'dark-bg': '#121212',
+                        'dark-card': '#1E1E1E'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'orbitron': ['Orbitron', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+        
+        body {
+            transition: background-color 0.5s ease;
+        }
+        
+        .futuristic-border {
+            border: 1px solid rgba(0, 204, 204, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+        
+        .futuristic-card {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 204, 204, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+        
+        .dark .futuristic-card {
+            background: rgba(30, 30, 30, 0.8);
+            box-shadow: 0 0 20px rgba(204, 0, 255, 0.1);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 5px rgba(0, 204, 204, 0.7);
+        }
+        
+        .dark .neon-text {
+            text-shadow: 0 0 5px rgba(204, 0, 255, 0.7);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3D3C3C 0%, #121212 100%);
+        }
+        
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #0a1929 0%, #121212 100%);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 204, 204, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 204, 204, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 204, 204, 0); }
+        }
+        
+        .dark .pulse {
+            animation: pulse-dark 2s infinite;
+        }
+        
+        @keyframes pulse-dark {
+            0% { box-shadow: 0 0 0 0 rgba(204, 0, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(204, 0, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(204, 0, 255, 0); }
+        }
+        
+        .beverage-card:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease;
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(0, 204, 204, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 204, 204, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        .dark .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(204, 0, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(204, 0, 255, 0.1) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-dark-bg font-sans text-black-olive dark:text-gray-200">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full z-50">
+        <nav class="bg-white dark:bg-dark-card py-4 px-6 flex justify-between items-center futuristic-border">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-robin-egg dark:bg-futuristic-purple flex items-center justify-center mr-3 pulse">
+                    <span class="text-2xl font-bold text-white">J</span>
+                </div>
+                <h1 class="text-2xl font-bold font-orbitron text-robin-egg dark:text-futuristic-purple">JEO</h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Home</a>
+                <a href="#about" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">About</a>
+                <a href="#products" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Products</a>
+                <a href="#partners" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Partners</a>
+                <a href="#contact" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Contact</a>
+            </div>
+            
+            <div class="flex items-center">
+                <button id="theme-toggle" class="w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-700 relative">
+                    <div class="absolute left-1 top-1 w-4 h-4 rounded-full bg-white dark:bg-gray-300 transition-transform duration-300" id="theme-toggle-circle"></div>
+                </button>
+                <button class="ml-4 bg-robin-egg dark:bg-futuristic-purple text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition">Login</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-20 px-6 gradient-bg grid-pattern">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-5xl md:text-6xl font-bold mb-6 font-orbitron neon-text">Liquid Innovation<span class="text-robin-egg dark:text-futuristic-purple">.</span></h2>
+                <p class="text-xl mb-8 max-w-lg">JEO delivers premium beverages to the future. Our distribution network spans across galaxies, bringing the finest drinks to establishments everywhere.</p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-robin-egg dark:bg-futuristic-purple text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition font-bold">Order Now</button>
+                    <button class="bg-transparent border-2 border-robin-egg dark:border-futuristic-purple text-robin-egg dark:text-futuristic-purple px-8 py-3 rounded-full hover:bg-opacity-10 transition font-bold">Learn More</button>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-robin-egg dark:bg-futuristic-purple rounded-full opacity-20 blur-3xl"></div>
+                <div class="relative z-10 flex justify-center">
+                    <div class="bg-white dark:bg-dark-card p-8 rounded-2xl futuristic-card w-full max-w-md">
+                        <div class="flex justify-center mb-6">
+                            <div class="w-24 h-24 rounded-full bg-gradient-to-r from-robin-egg to-futuristic-purple flex items-center justify-center">
+                                <i class="fas fa-wine-bottle text-4xl text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Next-Gen Distribution</h3>
+                        <p class="text-center mb-6">Our AI-powered logistics ensure your beverages arrive faster, colder, and fresher than ever before.</p>
+                        <div class="flex justify-center">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-robin-egg dark:bg-futuristic-purple"></div>
+                                <div class="w-3 h-3 rounded-full bg-gray-400"></div>
+                                <div class="w-3 h-3 rounded-full bg-gray-400"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-white dark:bg-dark-card">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 font-orbitron">Our Mission</h2>
+                <p class="text-xl max-w-2xl mx-auto">To revolutionize beverage distribution through technology, sustainability, and unparalleled service.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="futuristic-card p-8 rounded-2xl">
+                    <div class="text-robin-egg dark:text-futuristic-purple text-4xl mb-4">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Lightning Fast</h3>
+                    <p>Our quantum logistics network delivers beverages in record time across any distance.</p>
+                </div>
+                
+                <div class="futuristic-card p-8 rounded-2xl">
+                    <div class="text-robin-egg dark:text-futuristic-purple text-4xl mb-4">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Eco-Conscious</h3>
+                    <p>Zero-emission transport and biodegradable packaging for a sustainable future.</p>
+                </div>
+                
+                <div class="futuristic-card p-8 rounded-2xl">
+                    <div class="text-robin-egg dark:text-futuristic-purple text-4xl mb-4">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Smart Technology</h3>
+                    <p>AI-powered inventory management and predictive ordering for optimal stock levels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 px-6 bg-gray-100 dark:bg-dark-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 font-orbitron">Featured Products</h2>
+                <p class="text-xl max-w-2xl mx-auto">Discover our most popular beverage selections</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product Card 1 -->
+                <div class="beverage-card futuristic-card rounded-2xl overflow-hidden transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900 dark:to-cyan-900 flex items-center justify-center">
+                        <div class="w-24 h-24 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center">
+                            <i class="fas fa-cocktail text-3xl text-robin-egg dark:text-futuristic-purple"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Quantum Quencher</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Energy drink with neural boosters</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">$3.99</span>
+                            <button class="bg-robin-egg dark:bg-futuristic-purple text-white px-4 py-2 rounded-full text-sm">Order</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="beverage-card futuristic-card rounded-2xl overflow-hidden transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900 dark:to-emerald-900 flex items-center justify-center">
+                        <div class="w-24 h-24 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center">
+                            <i class="fas fa-apple-alt text-3xl text-robin-egg dark:text-futuristic-purple"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Nebula Nectar</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Organic fruit fusion with antioxidants</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">$4.49</span>
+                            <button class="bg-robin-egg dark:bg-futuristic-purple text-white px-4 py-2 rounded-full text-sm">Order</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="beverage-card futuristic-card rounded-2xl overflow-hidden transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-r from-purple-100 to-fuchsia-100 dark:from-purple-900 dark:to-fuchsia-900 flex items-center justify-center">
+                        <div class="w-24 h-24 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center">
+                            <i class="fas fa-flask text-3xl text-robin-egg dark:text-futuristic-purple"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Starlight Soda</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Zero-sugar sparkling refreshment</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">$2.99</span>
+                            <button class="bg-robin-egg dark:bg-futuristic-purple text-white px-4 py-2 rounded-full text-sm">Order</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="beverage-card futuristic-card rounded-2xl overflow-hidden transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900 dark:to-orange-900 flex items-center justify-center">
+                        <div class="w-24 h-24 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center">
+                            <i class="fas fa-coffee text-3xl text-robin-egg dark:text-futuristic-purple"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Hyper Brew</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Cold brew coffee with focus enhancers</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">$5.49</span>
+                            <button class="bg-robin-egg dark:bg-futuristic-purple text-white px-4 py-2 rounded-full text-sm">Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="py-20 px-6 bg-white dark:bg-dark-card">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 font-orbitron">Our Partners</h2>
+                <p class="text-xl max-w-2xl mx-auto">Trusted by establishments across the galaxy</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="flex justify-center">
+                    <div class="w-40 h-40 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                        <span class="text-xl font-bold text-robin-egg dark:text-futuristic-purple">STARBARS</span>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-40 h-40 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                        <span class="text-xl font-bold text-robin-egg dark:text-futuristic-purple">QUANTUM CAFÉ</span>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-40 h-40 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                        <span class="text-xl font-bold text-robin-egg dark:text-futuristic-purple">NOVA CLUBS</span>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-40 h-40 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                        <span class="text-xl font-bold text-robin-egg dark:text-futuristic-purple">GALAXY RESORTS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 gradient-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6 font-orbitron neon-text">Get in Touch</h2>
+                    <p class="text-xl mb-8">Ready to revolutionize your beverage supply? Contact our team today.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="text-robin-egg dark:text-futuristic-purple text-2xl mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Headquarters</h3>
+                                <p>Orion Tower, Suite 1204<br>Nebula District, Cosmos City</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-robin-egg dark:text-futuristic-purple text-2xl mr-4">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Contact</h3>
+                                <p>+1 (555) 123-4567<br>support@jeodistribution.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-robin-egg dark:text-futuristic-purple text-2xl mr-4">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Hours</h3>
+                                <p>24/7/365<br>Our quantum operations never sleep</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="futuristic-card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6">Send us a message</h3>
+                    <form>
+                        <div class="mb-4">
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 bg-white dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-robin-egg dark:focus:ring-futuristic-purple">
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 bg-white dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-robin-egg dark:focus:ring-futuristic-purple">
+                        </div>
+                        <div class="mb-4">
+                            <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 bg-white dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-robin-egg dark:focus:ring-futuristic-purple"></textarea>
+                        </div>
+                        <button class="w-full bg-robin-egg dark:bg-futuristic-purple text-white py-3 rounded-lg font-bold hover:bg-opacity-90 transition">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-black-olive dark:bg-dark-card text-gray-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-robin-egg dark:bg-futuristic-purple flex items-center justify-center mr-3">
+                            <span class="text-xl font-bold text-white">J</span>
+                        </div>
+                        <h3 class="text-2xl font-bold font-orbitron text-white">JEO</h3>
+                    </div>
+                    <p class="mb-4">Premium beverage distribution for the future.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-white">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">About Us</a></li>
+                        <li><a href="#products" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Products</a></li>
+                        <li><a href="#partners" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Partners</a></li>
+                        <li><a href="#contact" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-white">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Energy Drinks</a></li>
+                        <li><a href="#" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Sparkling Waters</a></li>
+                        <li><a href="#" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Juices & Smoothies</a></li>
+                        <li><a href="#" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Craft Sodas</a></li>
+                        <li><a href="#" class="hover:text-robin-egg dark:hover:text-futuristic-purple transition">Premium Coffees</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-white">Newsletter</h4>
+                    <p class="mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none bg-gray-800 text-white">
+                            <button class="bg-robin-egg dark:bg-futuristic-purple text-white px-4 rounded-r-lg"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p>&copy; 2023 JEO Distribution. All rights reserved. Designed for the future.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleCircle = document.getElementById('theme-toggle-circle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or respect OS setting
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (savedTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            themeToggleCircle.style.transform = 'translateX(1.5rem)';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggleCircle.style.transform = 'translateX(1.5rem)';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggleCircle.style.transform = 'translateX(0)';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

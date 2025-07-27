@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta title="author" content="Franciz Morningstar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            padding: 0;
+            margin: 20px;
+            background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(/ASSETS/Image/babe3.jpg);
+            background-size: cover;
+        }
+
+        fieldset{
+            width: 600px;
+            margin-top: 60px;
+            padding: 30px 80px;
+            border: 3px solid;
+            border-radius: 20px;
+            background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(/ASSETS/Image/babe3.jpg);
+            background-size: cover;
+            color: green;
+            
+        }
+
+        h1, h3{
+            text-align: center;
+        }
+
+        #Name{
+            margin-top: 25px;
+            display: block;
+        }
+
+        #section{
+            display: inline;
+            height: 45px;
+            width: 255px;
+            padding-bottom: 6px;
+            border-bottom: 3px solid green;
+        }
+
+        #section2{
+            display: block;
+            height: 45px;
+            width: 493px;
+            padding-bottom: 6px;
+            border-bottom: 3px solid green;
+        }
+
+        .section{
+            margin-left: 10px;
+        }
+
+        section img{
+            width: 20px;
+            margin-left: 6px;
+            margin-bottom: -6px;
+            background-color: green;
+            border-radius: 2px;
+        }
+        input{
+            height: 100%;
+            width: 225px;
+            outline: none;
+            border: none;
+            font-weight: 600;
+            font-size: 15px;
+            margin-top: .3rem;
+            font-style: italic;
+            background: transparent;
+            color: green;
+        }
+
+        #label{
+            margin-top: 4px;
+            width: 525px;
+        }
+
+        #label p{
+            font-size: 13px;
+        }
+
+        section #topic{
+            height: 35px;
+            width: 493px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 2px solid;
+            outline: none;
+            cursor: pointer;
+            background: transparent;
+            border-bottom: 3px solid green;
+            color: green;
+        }
+
+        button{
+            margin-top: 30px;
+            text-align: center;
+            width: 130px;
+            height: 40px;
+            border-radius: 50px;
+            border: 1.5px solid;
+            font-weight: 600;
+            font-size: 14px;
+            background: transparent;
+            border: 2px solid green;
+            color: green;
+        }
+
+        button:hover {
+            cursor: pointer;
+            border-radius: 50px;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 4px solid red;
+            color: red;
+        }
+
+        #div{
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <Fieldset>
+        <h1>Event Registration</h1>
+        <h3>Register with us to get more details</h3>
+        
+
+        <label id="Name" for="name">Name</label>
+
+        <section id="section">
+            <img src="/ASSETS/Image/contact.png" alt="">
+            <input type="text" name="first" id="first">
+        </section>
+
+        <section class="section" id="section">
+            <input type="text" name="first" id="first">
+        </section>
+
+        <section id="label">
+            <p style="display: inline-block; width: 50%; margin-top: 5px;">First</p>
+            <p style="display: inline; width: 50%; margin: 5px 0 0 2px;">Last</p>
+        </section>
+
+        <label id="Name" for="email">Email</label>
+
+        <section id="section2">
+            <img src="/ASSETS/Image/email.png" alt="">
+            <input type="text" name="first" id="first">
+        </section>
+
+        <label id="Name" for="phone">Phone</label>
+
+        <section id="section2">
+            <img src="/ASSETS/Image/smartphone.png" alt="">
+            <input type="tel" name="first" id="first">
+        </section>
+
+        <label id="Name" for="topic">Topic</label>
+
+        <section>
+            <select name="topic" id="topic"></select>
+        </section>
+
+        <label id="Name" for="slot">Preferred Slot</label>
+
+        <section>
+            <select name="slot" id="topic"></select>
+        </section>
+
+        <div id="div">
+            <button>Sign me up</button>
+        </div>
+    </Fieldset>
+
+</body>
+</html>
